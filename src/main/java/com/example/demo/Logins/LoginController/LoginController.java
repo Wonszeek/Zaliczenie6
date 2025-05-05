@@ -33,11 +33,11 @@ public class LoginController {
         boolean success = userService.login(email, password, session);
 
         if (success) {
-            return new ModelAndView("redirect:/"); // lub "index" jeśli masz widok JSP/Thymeleaf
+            return new ModelAndView("redirect:/index2");
         } else {
             ModelAndView mav = new ModelAndView("login");
             mav.addObject("errorMessage", "Niepoprawne dane logowania");
-            mav.addObject("user", new Login()); // zachowaj model
+            mav.addObject("user", new Login());
             return mav;
         }
     }
