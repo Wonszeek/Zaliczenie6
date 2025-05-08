@@ -28,14 +28,14 @@
                     radial-gradient(circle at 90% 80%, rgba(252, 234, 187, 0.05) 0%, transparent 20%);
         }
 
-        .login-header {
+        .user-header {
             background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-dark) 100%);
             padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .login-logo {
+        .user-logo {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 700;
@@ -47,7 +47,7 @@
             margin: 0;
         }
 
-        .login-container {
+        .user-container {
             max-width: 500px;
             margin: 50px auto;
             padding: 40px;
@@ -58,7 +58,7 @@
             overflow: hidden;
         }
 
-        .login-container::before {
+        .user-container::before {
             content: '';
             position: absolute;
             top: 0;
@@ -68,7 +68,7 @@
             background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 100%);
         }
 
-        .login-title {
+        .user-title {
             font-family: 'Playfair Display', serif;
             color: var(--navy-dark);
             text-align: center;
@@ -76,7 +76,7 @@
             position: relative;
         }
 
-        .login-title::after {
+        .user-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -114,7 +114,7 @@
             outline: none;
         }
 
-        .btn-login {
+        .btn-user {
             width: 100%;
             padding: 14px;
             background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 100%);
@@ -128,56 +128,56 @@
             margin-top: 10px;
         }
 
-        .btn-login:hover {
+        .btn-user:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(248, 181, 0, 0.3);
         }
 
-        .login-footer {
+        .user-footer {
             text-align: center;
             margin-top: 20px;
             color: #666;
         }
 
-        .login-footer a {
+        .user-footer a {
             color: var(--gold-dark);
             text-decoration: none;
             font-weight: 500;
         }
 
-        .login-footer a:hover {
+        .user-footer a:hover {
             text-decoration: underline;
         }
 
         /* Responsywność */
         @media (max-width: 600px) {
-            .login-container {
+            .user-container {
                 margin: 30px 15px;
                 padding: 30px 20px;
             }
 
-            .login-logo {
+            .user-logo {
                 font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-<header class="login-header">
+<header class="user-header">
     <a th:href="@{/index.html}" style="text-decoration: none; color: inherit;">
-        <h1 class="login-logo">Smaki Świata</h1>
+        <h1 class="user-logo">Smaki Świata</h1>
     </a>
 </header>
 
 <main>
-    <div class="login-container">
-        <h2 class="login-title">Zaloguj się</h2>
+    <div class="user-container">
+        <h2 class="user-title">Zaloguj się</h2>
         <div th:if="${errorMessage}" style="color: red; text-align: center; margin-bottom: 20px;">
             <p th:text="${errorMessage}"></p>
         </div>
 
 
-        <form th:action="@{/login}" th:object="${user}" method="post">
+        <form th:action="@{/user}" th:object="${user}" method="post">
             <div class="form-group">
                 <label for="username">Email</label>
                 <input type="text" id="username" th:field="*{email}" class="form-control" required>
@@ -188,9 +188,9 @@
                 <input type="password" id="password" th:field="*{password}" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn-login">Zaloguj się</button>
+            <button type="submit" class="btn-user">Zaloguj się</button>
 
-            <div class="login-footer">
+            <div class="user-footer">
                 <p>Nie masz konta? <a th:href="@{/register}">Zarejestruj się</a></p>
             </div>
         </form>
