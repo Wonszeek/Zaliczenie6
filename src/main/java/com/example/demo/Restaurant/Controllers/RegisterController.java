@@ -1,9 +1,9 @@
-package com.example.demo.Logins.LoginController;
+package com.example.demo.Restaurant.Controllers;
 
 //import com.example.demo.Logins.Register.Register;
 //import ch.qos.logback.core.model.Model;
-import com.example.demo.Logins.Domain.User;
-import com.example.demo.Logins.Service.RegisterService;
+import com.example.demo.Restaurant.Domain.User;
+import com.example.demo.Restaurant.Service.RegisterService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

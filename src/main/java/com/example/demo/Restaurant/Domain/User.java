@@ -1,4 +1,4 @@
-package com.example.demo.Logins.Domain;
+package com.example.demo.Restaurant.Domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -18,8 +18,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "username", unique=true)
     private String username;
 
+    @Column(name = "password", unique=true)
     @Size(min = 8, message = "Hasło musi mieć co najmniej 8 znaków")
     private String password;
 
@@ -27,7 +30,7 @@ public class User implements UserDetails {
     private String confirmPassword;
 
     @Email
-    @Column(unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     public User(Long id, String username, String password, String email) {

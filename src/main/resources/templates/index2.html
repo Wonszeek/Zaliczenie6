@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="pl">
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="pl" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restauracja - Wizytówka</title>
     <link rel="stylesheet" href="style/style2.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -84,6 +81,14 @@
             transform-origin: left;
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+
         .user-btn {
             background: rgba(255, 255, 255, 0.1);
             color: white;
@@ -115,23 +120,86 @@
             transform: scale(1.1);
         }
 
+
+        .burger-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: 10px;
+        }
+        .burger-icon {
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .menu-items {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 40px;
+            background-color: #2c3e50;
+            min-width: 200px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 8px;
+            padding: 15px 0;
+        }
+        .menu-items a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+
+        }
+
+        .burger-menu.active .burger-icon:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .burger-menu.active .burger-icon:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-icon:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
         /* Responsywność */
         @media (max-width: 768px) {
             .header-container {
                 padding: 0 20px;
-                flex-direction: column;
-                gap: 15px;
             }
 
             .logo {
                 font-size: 2rem;
-                margin-bottom: 10px;
             }
 
             .user-btn {
-                padding: 10px 20px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .menu-items {
+                right: 20px;
             }
         }
+
+        /* Slider styles */
         .slider-container {
             max-width: 100vw;
             margin: 0 auto;
@@ -140,73 +208,35 @@
 
         .slider {
             display: flex;
-            width: 300%; /* 3 zdjęcia = 300% */
-            animation: slide 15s infinite; /* Pełny cykl w 15s */
+            width: 300%;
+            animation: slide 15s infinite;
         }
 
         .slider img {
-            width: 33.333%; /* 1/3 szerokości kontenera */
+            width: 33.333%;
             height: 400px;
             object-fit: cover;
             flex-shrink: 0;
         }
 
         @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-
-            33% {
-                transform: translateX(-33.333%);
-            }
-
-            66% {
-                transform: translateX(-66.666%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-        .about {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 40px;
-            max-width: 60vw;
-            margin: 0 auto;
-            color: #333;
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-33.333%); }
+            66% { transform: translateX(-66.666%); }
+            100% { transform: translateX(0); }
         }
 
-        .about h2 {
-            flex-basis: 100%;
-            text-align: center;
-        }
-
-        .about img {
-            /* flex: 0 0 50%; */
-            max-width: 40%;
-            margin-right: 10%;
-            align-self: center;
-        }
-
-        .about p {
-            flex: 0 0 50%;
-            text-align: left;
-            line-height: 1.8;
-            font-size: 1.2em;
-            margin: 0;
-        }
-
-        .location {
-            padding: 60px 20px;
+        /* Section styles */
+        .section-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 60px 20px;
         }
 
-        .location h2 {
+        .section-title {
             text-align: center;
             margin-bottom: 40px;
-            font-size: 2em;
+            font-size: 2.2em;
             color: #333;
         }
 
@@ -245,36 +275,14 @@
             color: #555;
         }
 
-        @media (max-width: 768px) {
-            .map-text-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .map,
-            .location-text-content {
-                width: 100%;
-            }
-        }
-        .founders {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .founders h2 {
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
+        /* Founders styles */
         .founder-intro {
             max-width: 800px;
             margin: 0 auto 40px;
             font-size: 1.2em;
             line-height: 1.6;
             color: #555;
+            text-align: center;
         }
 
         .founder-photos {
@@ -374,6 +382,28 @@
             color: #555;
         }
 
+        /* Button styles */
+        .btn-reservation {
+            background: linear-gradient(90deg, #f8b500 0%, #fceabb 100%);
+            border: none;
+            border-radius: 30px;
+            color: #16213e;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(248, 181, 0, 0.3);
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn-reservation:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(248, 181, 0, 0.4);
+        }
+
         @media (max-width: 768px) {
             .founder-item {
                 flex-direction: column;
@@ -390,92 +420,39 @@
                 width: 150px;
                 height: 150px;
             }
-        }
 
-        /* style2.css */
-        /* ... istniejące style ... */
-
-        /* Style dla headera i burger menu */
-        /* Style dla burger menu - WIDOCZNE ZAWSZE */
-        .header-right {
-            position: relative; /* kluczowe! burger i menu będą odnosić się do tego */
+            .map-text-container {
+                flex-direction: column;
+            }
+            .menu-reservation-btn {
+                background: linear-gradient(90deg, #f8b500 0%, #fceabb 100%);
+                color: #16213e;
+                border-radius: 20px;
+                margin: 5px 10px;
+            }
+            .menu-reservation-btn {
+                background: linear-gradient(90deg, #f8b500 0%, #fceabb 100%);
+                color: #16213e;
+                border-radius: 20px;
+                margin: 5px 10px;
+            }
         }
-        .burger-menu {
-            display: block; /* Zamiast none - pokazuj zawsze */
-            cursor: pointer;
-            margin-left: 20px;
-            padding: 12px;
-            z-index: 1001;
-        }
-
-        .burger-icon {
-            width: 30px;
-            height: 3px;
-            background-color: white;
-            margin: 6px 0;
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        /* Menu rozwijane */
-        .menu-items {
-            display: none;
-            position: absolute;
-            top: 100%; /* dokładnie pod burger-menu */
-            right: -8vh; /* wyrównane do prawej krawędzi burgera */
-            background-color: #2c3e50;
-            min-width: 200px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            border-radius: 8px;
-            padding: 15px 0;
-        }
-
-        .menu-items a {
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            display: block;
-            transition: all 0.3s ease;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .menu-items a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding-left: 30px;
-        }
-
-        /* Animacja burgera przy otwarciu */
-        .burger-menu.active .burger-icon:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .burger-menu.active .burger-icon:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active .burger-icon:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
     </style>
 </head>
 
 <body>
-    <header class="main-header">
-        <div class="header-container">
-            <h1 class="logo">Smaki<span>Świata</span></h1>
-            <div class="header-right" style="display: flex; align-items: center;">
-                <a th:href="@{/index}" class="user-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                    </svg>
-                    Wyloguj
-                </a>
+<header class="main-header">
+    <div class="header-container">
+        <h1 class="logo">Smaki<span>Świata</span></h1>
+        <div class="header-right">
+            <a th:href="@{/index}" class="user-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+                Wyloguj
+            </a>
 
+            <div class="burger-container">
                 <div class="burger-menu" id="burgerMenu">
                     <span class="burger-icon"></span>
                     <span class="burger-icon"></span>
@@ -483,155 +460,128 @@
                 </div>
 
                 <div class="menu-items" id="menuItems">
-                    <a th:href="@{settings.html#profile}">Moje dane</a>
-                    <a th:href="@{settings.html/#reservations}">Rezerwacje</a>
-                    <a href="settings.html#reserve">Zarezerwuj stolik</a>
-                    <a href="settings.html#contact">Kontakt</a>
-                    <a href="settings.html#about">O nas</a>
-                    <a href="index.html">Wyloguj</a>
-
+                    <a th:href="@{/reservations/new}" class="menu-reservation-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Zarezerwuj stolik
+                    </a>
+                    <a th:href="@{/reservations/my-reservations}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.038-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                        </svg>
+                        Moje rezerwacje
+                    </a>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Reszta kodu pozostaje bez zmian -->
-    <div class="slider-container">
-        <div class="slider">
-            <img src="./zdjecia/slider1.jpg" alt="Nasze restauracja 1">
-            <img src="./zdjecia/slider2.jpg" alt="Nasze restauracja 2">
-            <img src="./zdjecia/slider3.jpg" alt="Nasze restauracja 3">
+<div class="slider-container">
+    <div class="slider">
+        <img src="./zdjecia/slider1.jpg" alt="Nasze restauracja 1">
+        <img src="./zdjecia/slider2.jpg" alt="Nasze restauracja 2">
+        <img src="./zdjecia/slider3.jpg" alt="Nasze restauracja 3">
+    </div>
+</div>
+
+<section class="section-container">
+    <h2 class="section-title">Lokalizacja</h2>
+    <div class="map-text-container">
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.666825685432!2d21.012228315783306!3d52.229675979757504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc6693c9c6ed%3A0xdee47083d8d7c1b2!2sWarszawa!5e0!3m2!1spl!2spl!4v1615362554262!5m2!1spl!2spl" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="location-text-content">
+            <p>Restauracja Smaki Świata znajduje się w samym sercu miasta, zaledwie kilka minut spacerem od głównego placu. Z łatwym dostępem z głównych dróg, oferujemy komfortowe warunki zarówno dla osób zmotoryzowanych, jak i korzystających z komunikacji miejskiej.</p>
+            <p>Nasza lokalizacja to idealne miejsce na spotkanie z przyjaciółmi, rodziną lub biznesowe rozmowy. W pobliżu znajdziesz wiele atrakcji turystycznych, a także przestronne parkingi, które umożliwiają wygodne zaparkowanie pojazdu.</p>
+            <p>Zachęcamy do odwiedzin i skosztowania naszych wyjątkowych dań w przyjemnej atmosferze!</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-container">
+    <h2 class="section-title">Nasz Zespół</h2>
+    <div class="founder-intro">
+        <p>Poznaj ludzi, którzy stoją za sukcesem Smaków Świata. Nasz zespół to pasjonaci kulinarni z wieloletnim doświadczeniem.</p>
+    </div>
+
+    <div class="founder-photos">
+        <div class="founder-photo-item">
+            <img src="./zdjecia/mb.jpg" alt="Mateusz Biernacki - Szef Kuchni" class="round">
+            <span class="founder-name">Mateusz Biernacki</span>
+        </div>
+        <div class="founder-photo-item">
+            <img src="./zdjecia/bk.jpg" alt="Bartosz Krawiś - Manager" class="round">
+            <span class="founder-name">Bartosz Krawiś</span>
+        </div>
+        <div class="founder-photo-item">
+            <img src="./zdjecia/fp.jpg" alt="Filip Piskorz - Sommelier" class="round">
+            <span class="founder-name">Filip Piskorz</span>
+        </div>
+        <div class="founder-photo-item">
+            <img src="./zdjecia/mk.jpg" alt="Martyna Królikowska - Pastry Chef" class="round">
+            <span class="founder-name">Martyna Królikowska</span>
         </div>
     </div>
 
-    <section class="location">
-        <h2>Lokalizacja</h2>
-        <div class="map-text-container">
-            <div class="map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.666825685432!2d21.012228315783306!3d52.229675979757504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc6693c9c6ed%3A0xdee47083d8d7c1b2!2sWarszawa!5e0!3m2!1spl!2spl!4v1615362554262!5m2!1spl!2spl"
-                    allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="location-text-content">
-                <p>Restauracja Smaki Świata znajduje się w samym sercu miasta, zaledwie kilka minut spacerem od głównego
-                    placu. Z łatwym dostępem z głównych dróg, oferujemy komfortowe warunki zarówno dla osób
-                    zmotoryzowanych, jak i korzystających z komunikacji miejskiej.</p>
-                <p>Nasza lokalizacja to idealne miejsce na spotkanie z przyjaciółmi, rodziną lub biznesowe rozmowy. W
-                    pobliżu znajdziesz wiele atrakcji turystycznych, a także przestronne parkingi, które umożliwiają
-                    wygodne zaparkowanie pojazdu.</p>
-                <p>Zachęcamy do odwiedzin i skosztowania naszych wyjątkowych dań w przyjemnej atmosferze!</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="founders">
-        <h2>Nasz Zespół</h2>
-        <div class="founder-intro">
-            <p>Poznaj ludzi, którzy stoją za sukcesem Smaków Świata. Nasz zespół to pasjonaci kulinarni z wieloletnim
-                doświadczeniem.</p>
-        </div>
-
-        <div class="founder-photos">
-
-            <div class="founder-photo-item">
-                <img src="./zdjecia/mb.jpg" alt="Mateusz Biernacki - Szef Kuchni" class="round">
-                <span class="founder-name">Mateusz Biernacki</span>
-            </div>
-            <div class="founder-photo-item">
-                <img src="./zdjecia/bk.jpg" alt="Bartosz Krawiś - Manager" class="round">
-                <span class="founder-name">Bartosz Krawiś</span>
-            </div>
-            <div class="founder-photo-item">
-                <img src="./zdjecia/fp.jpg" alt="Filip Piskorz - Sommelier" class="round">
-                <span class="founder-name">Filip Piskorz</span>
-            </div>
-            <div class="founder-photo-item">
-                <img src="./zdjecia/mk.jpg" alt="Martyna Królikowska - Pastry Chef" class="round">
-                <span class="founder-name">Martyna Królikowska</span>
+    <div class="founder-details">
+        <div class="founder-item">
+            <img src="./zdjecia/mb.jpg" alt="Mateusz Biernacki" class="detail-photo">
+            <div class="founder-info">
+                <h3>Mateusz Biernacki</h3>
+                <p class="position">Szef Kuchni</p>
+                <p>Z pasją łączy tradycję z nowoczesnością, tworząc dania, które opowiadają historie. Absolwent paryskiego Le Cordon Bleu z 15-letnim doświadczeniem w michelinowskich restauracjach Europy. Jego specjalność to reinterpretacja polskich klasyków z zaskakującymi akcentami – jak pierogi z kaczką konfitowaną i żurawinowym purée. W kuchni wymaga precyzji, ale jego energia inspiruje cały zespół. Po godzinach prowadzi kulinarne podcasty.</p>
             </div>
         </div>
 
-        <div class="founder-details">
-
-            <div class="founder-item">
-                <img src="./zdjecia/mb.jpg" alt=" Mateusz Biernacki" class="detail-photo">
-                <div class="founder-info">
-                    <h3>Mateusz Biernacki</h3>
-                    <p class="position">Szef Kuchni</p>
-                    <p>Z pasją łączy tradycję z nowoczesnością, tworząc dania, które opowiadają historie. Absolwent
-                        paryskiego Le Cordon Bleu z 15-letnim doświadczeniem w michelinowskich restauracjach Europy.
-                        Jego specjalność to reinterpretacja polskich klasyków z zaskakującymi akcentami – jak pierogi z
-                        kaczką konfitowaną i żurawinowym purée. W kuchni wymaga precyzji, ale jego energia inspiruje
-                        cały zespół. Po godzinach prowadzi kulinarne podcasty.</p>
-                </div>
-            </div>
-
-            <div class="founder-item">
-                <img src="./zdjecia/bk.jpg" alt="Bartosz Krawiś " class="detail-photo">
-                <div class="founder-info">
-                    <h3>Bartosz Krawiś </h3>
-                    <p class="position">Manager</p>
-                    <p>Perfekcjonista z krwi i kości, który zamienia chaos w nienaganną organizację. Wcześniej kierował
-                        zespołami w luksusowych kurortach Alpejskich, gdzie nauczył się, że detale decydują o wyjątkowym
-                        doświadczeniu gości. Jego supermoc? Antycypowanie potrzeb klientów – zanim zdążą je
-                        wypowiedzieć. Wprowadził innowacyjny system rezerwacji, który stał się wzorem dla innych
-                        restauracji. Po godzinach zapalony narciarz i kolekcjoner rare’owych whisky.</p>
-                </div>
-            </div>
-
-            <div class="founder-item">
-                <img src="./zdjecia/fp.jpg" alt="Filip Piskorz" class="detail-photo">
-                <div class="founder-info">
-                    <h3>Filip Piskorz</h3>
-                    <p class="position">Sommelier</p>
-                    <p>Wirtuoz winnych harmonii z certyfikatami WSET Level 4. Potrafi dobrać trunek nie tylko do
-                        potrawy, ale nawet do… nastroju gościa. Jego piwnica to ponad 500 pozycji, w tym mało znane
-                        perełki z Mołdawii czy Gruzji. Prowadzi cotygodniowe degustacje z opowieściami o winnicach –
-                        jego wykład o burgundach potrafi trwać 3 godziny i nikt nie chce wychodzić!</p>
-                </div>
-            </div>
-            <div class="founder-item">
-                <img src="./zdjecia/mk.jpg" alt="Martyna Królikowska" class="detail-photo">
-                <div class="founder-info">
-                    <h3>Martyna Królikowska</h3>
-                    <p class="position">Pastry Chef</p>
-                    <p>Mistrzyni deserów z wykształceniem cukierniczym z Brukseli. Jej słodkie kreacje to połączenie
-                        finezji i śmiałych smaków. Specjalizuje się w deserach bezglutenowych i wegańskich,
-                        udowadniając, że zdrowe może być wyjątkowo pyszne. Każdy jej wypiek to małe dzieło sztuki, które
-                        zachwyca zarówno wyglądem, jak i smakiem. W wolnym czasie prowadzi warsztaty cukiernicze dla
-                        dzieci i dorosłych.</p>
-                </div>
+        <div class="founder-item">
+            <img src="./zdjecia/bk.jpg" alt="Bartosz Krawiś" class="detail-photo">
+            <div class="founder-info">
+                <h3>Bartosz Krawiś</h3>
+                <p class="position">Manager</p>
+                <p>Perfekcjonista z krwi i kości, który zamienia chaos w nienaganną organizację. Wcześniej kierował zespołami w luksusowych kurortach Alpejskich, gdzie nauczył się, że detale decydują o wyjątkowym doświadczeniu gości. Jego supermoc? Antycypowanie potrzeb klientów – zanim zdążą je wypowiedzieć. Wprowadził innowacyjny system rezerwacji, który stał się wzorem dla innych restauracji. Po godzinach zapalony narciarz i kolekcjoner rare'owych whisky.</p>
             </div>
         </div>
-    </section>
-    <!-- Add this where you want to display session info -->
-    <div th:if="${sessionId != null}" class="session-info">
-        <p>Current Session ID: <span th:text="${sessionId}"></span></p>
-        <p th:if="${username != null}">Logged in as: <span th:text="${username}"></span></p>
+
+        <div class="founder-item">
+            <img src="./zdjecia/fp.jpg" alt="Filip Piskorz" class="detail-photo">
+            <div class="founder-info">
+                <h3>Filip Piskorz</h3>
+                <p class="position">Sommelier</p>
+                <p>Wirtuoz winnych harmonii z certyfikatami WSET Level 4. Potrafi dobrać trunek nie tylko do potrawy, ale nawet do… nastroju gościa. Jego piwnica to ponad 500 pozycji, w tym mało znane perełki z Mołdawii czy Gruzji. Prowadzi cotygodniowe degustacje z opowieściami o winnicach – jego wykład o burgundach potrafi trwać 3 godziny i nikt nie chce wychodzić!</p>
+            </div>
+        </div>
+
+        <div class="founder-item">
+            <img src="./zdjecia/mk.jpg" alt="Martyna Królikowska" class="detail-photo">
+            <div class="founder-info">
+                <h3>Martyna Królikowska</h3>
+                <p class="position">Pastry Chef</p>
+                <p>Mistrzyni deserów z wykształceniem cukierniczym z Brukseli. Jej słodkie kreacje to połączenie finezji i śmiałych smaków. Specjalizuje się w deserach bezglutenowych i wegańskich, udowadniając, że zdrowe może być wyjątkowo pyszne. Każdy jej wypiek to małe dzieło sztuki, które zachwyca zarówno wyglądem, jak i smakiem. W wolnym czasie prowadzi warsztaty cukiernicze dla dzieci i dorosłych.</p>
+            </div>
+        </div>
     </div>
-    </div>
+</section>
 
-    <script>
-        const burgerMenu = document.getElementById('burgerMenu');
-        const menuItems = document.getElementById('menuItems');
+<script>
+    const burgerMenu = document.getElementById('burgerMenu');
+    const menuItems = document.getElementById('menuItems');
 
-        burgerMenu.addEventListener('click', function (e) {
-            e.stopPropagation(); // Zapobiega natychmiastowemu zamykaniu
-            this.classList.toggle('active');
-            menuItems.style.display = menuItems.style.display === 'block' ? 'none' : 'block';
-        });
+    burgerMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        menuItems.style.display = menuItems.style.display === 'block' ? 'none' : 'block';
+    });
 
-        // Zamknij menu po kliknięciu gdziekolwiek indziej
-        document.addEventListener('click', function () {
-            burgerMenu.classList.remove('active');
-            menuItems.style.display = 'none';
-        });
+    document.addEventListener('click', function() {
+        burgerMenu.classList.remove('active');
+        menuItems.style.display = 'none';
+    });
 
-        // Zapobiegaj zamykaniu przy kliknięciu w menu
-        menuItems.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
-    </script>
+    menuItems.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+</script>
 </body>
-
 </html>

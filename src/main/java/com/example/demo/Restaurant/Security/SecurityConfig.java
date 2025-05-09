@@ -1,4 +1,4 @@
-package com.example.demo.Logins.Security;
+package com.example.demo.Restaurant.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

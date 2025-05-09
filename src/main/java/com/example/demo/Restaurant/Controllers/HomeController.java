@@ -1,4 +1,4 @@
-package com.example.demo.Logins.LoginController;
+package com.example.demo.Restaurant.Controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;

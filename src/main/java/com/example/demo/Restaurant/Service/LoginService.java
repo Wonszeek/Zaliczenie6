@@ -1,7 +1,7 @@
-package com.example.demo.Logins.Service;
+package com.example.demo.Restaurant.Service;
 
-import com.example.demo.Logins.Domain.User;
-import com.example.demo.Logins.Repository.LoginRepository;
+import com.example.demo.Restaurant.Domain.User;
+import com.example.demo.Restaurant.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

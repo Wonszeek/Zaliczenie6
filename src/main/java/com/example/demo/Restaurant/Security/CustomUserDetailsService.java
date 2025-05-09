@@ -1,7 +1,7 @@
-package com.example.demo.Logins.Security;
+package com.example.demo.Restaurant.Security;
 
-import com.example.demo.Logins.Domain.User;
-import com.example.demo.Logins.Repository.LoginRepository;
+import com.example.demo.Restaurant.Domain.User;
+import com.example.demo.Restaurant.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

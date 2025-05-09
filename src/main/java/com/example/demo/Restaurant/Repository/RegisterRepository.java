@@ -1,6 +1,6 @@
-package com.example.demo.Logins.Repository;
+package com.example.demo.Restaurant.Repository;
 
-import com.example.demo.Logins.Domain.User;
+import com.example.demo.Restaurant.Domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
