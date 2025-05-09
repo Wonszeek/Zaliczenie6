@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,7 +165,7 @@
 </head>
 <body>
 <header class="user-header">
-    <a th:href="@{/index.html}" style="text-decoration: none; color: inherit;">
+    <a th:href="@{/index}" style="text-decoration: none; color: inherit;">
         <h1 class="user-logo">Smaki Świata</h1>
     </a>
 </header>
@@ -177,18 +178,26 @@
         </div>
 
 
-        <form th:action="@{/user}" th:object="${user}" method="post">
-            <div class="form-group">
-                <label for="username">Email</label>
-                <input type="text" id="username" th:field="*{email}" class="form-control" required>
-            </div>
+        <form th:action="@{/login}" method="post">
+        <!-- Error message display -->
+        <div th:if="${param.error}" class="alert alert-danger">
+            Niepoprawne dane logowania
+        </div>
 
-            <div class="form-group">
-                <label for="password">Hasło</label>
-                <input type="password" id="password" th:field="*{password}" class="form-control" required>
-            </div>
+        <div class="form-group">
+            <label for="username">Email</label>
+            <!-- Spring Security expects name="username" -->
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
 
-            <button type="submit" class="btn-user">Zaloguj się</button>
+        <div class="form-group">
+            <label for="password">Hasło</label>
+            <!-- Spring Security expects name="password" -->
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn-user">Zaloguj się</button>
+    </form>
 
             <div class="user-footer">
                 <p>Nie masz konta? <a th:href="@{/register}">Zarejestruj się</a></p>

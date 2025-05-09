@@ -3,6 +3,7 @@ package com.example.demo.Logins.Service;
 import com.example.demo.Logins.Domain.User;
 import com.example.demo.Logins.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
@@ -12,6 +13,9 @@ public class LoginService {
 
     @Autowired
     private LoginRepository repo;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     public boolean login(String email, String password, HttpSession session) {
         User user = repo.findByEmail(email);
